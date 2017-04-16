@@ -1,0 +1,59 @@
+<% include adminloginheader %>
+
+
+ <div class="page-content">
+      <div class="row">
+      <div class="col-md-2">
+        <% include adminloginsidebar %>
+      </div>
+		  <div class="col-md-10">
+		  <div class="row">
+		  	<div class="col-md-12">
+		  		 <% if (errors == ''){ %>
+	          	<div></div>
+	            <% } else { %>
+	           		<div role="alert" class="alert alert-danger"><%= errors %></div>
+	             <% } %>
+		  	</div>
+		  </div>
+		  <div class="row">
+		  	<form action="/admin/stock/<%= currentUser.username %>" method="POST" id="signupForm">
+		  	<div class="col-md-4">
+		  		 <div class="form-group">
+		            <input class="form-control" name="name" placeholder="Enter Stock name" type="text">
+		        </div>
+		  	</div>
+			<div class="col-md-4">
+				<div class="form-group">
+		            <input class="form-control" name="value" placeholder="Enter Stock name" type="text">
+		        </div>
+			</div>
+			<div class="col-md-4">
+				 <div class="form-group">
+		            <div class="form-group">
+	                    <button type="submit" class="btn btn-primary">Sign in</button>
+	                </div>
+		        </div>
+			</div>
+	      </form>
+		  </div>
+		  	<div class="row">
+		  	<%for (var stock in stocks){%>
+				  <div class="col-md-4">
+		  				<div class=" stock content-box-large box-with-header text-center" style="font-size: 15px; margin-bottom: 10px; padding-bottom: 80px; padding-top: 80px;">
+			  			<h1 class="text-info" style="font-size: 80px;"><%= stocks[stock].value %></h1>
+			  			<a href="/admin/removestock/<%= currentUser.username %>/<%= stocks[stock].name %>" style="font-size: 25px" class="btn btn-danger">Remove</a>
+			  			<a href="/admin/stockusers/<%= stocks[stock]._id %>" class=" btn btn-info" style="font-size: 40px;">Users</a>
+					</div>
+		  		</div>   
+			<%}%>
+		  	</div>
+		  </div>
+		</div>
+    </div>
+
+
+<script src="/js/jquery-3.1.1.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

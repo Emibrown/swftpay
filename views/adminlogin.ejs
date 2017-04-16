@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style1.css">
+<title>Swift-pay</title>
+</head>
+<body>	 
+<div class="container con">
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-4">
+		  <% if (errors == ""){ %>
+          	<div></div>
+            <% } else { %>
+           		<div role="alert" class="alert alert-danger"><%= errors %></div>
+             <% } %>
+		 <form action="/admin/login" method="POST" id="signupForm">
+			 <div class="form-group">
+	            <label for="name-login">Username</label>
+	            <input class="form-control" name="username" placeholder="Enter your Username" type="text">
+	        </div>
+	         <div class="form-group">
+	            <label for="name-login">Password</label>
+	            <input class="form-control" name="password" placeholder="Enter your Password" type="password">
+	        </div>
+	         <div class="form-group">
+	            <div class="form-group">
+                    <button type="submit" class="btn btn-primary form-control">Sign in</button>
+                </div>
+	        </div>
+	      </form>
+		</div>
+	</div>
+</div>
+<script src="/js/jquery-3.1.1.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

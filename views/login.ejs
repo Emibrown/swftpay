@@ -1,0 +1,50 @@
+<% include header %>
+
+<aside class="fh5co-page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="fh5co-page-heading-lead">
+                       Login
+                        <span class="fh5co-border"></span>
+                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+    </aside>
+<div class="container">
+	      <% if (errors == ""){ %>
+          	<div></div>
+            <% } else { %>
+           		<div role="alert" class="alert alert-danger"><%= errors %></div>
+             <% } %>
+</div>
+	 
+<div class="container con">
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-4">
+		 <form action="/login" method="POST" id="signupForm">
+			 <div class="form-group">
+	            <label for="name-login">Username</label>
+	            <input class="form-control" name="username" placeholder="Enter your Username" type="text">
+	        </div>
+	         <div class="form-group">
+	            <label for="name-login">Password</label>
+	            <input class="form-control" name="password" placeholder="Enter your Password" type="password">
+	        </div>
+	            <div class="form-group">
+                   <input type="submit" class="btn btn-primary " value="Continue">
+                </div>
+	            <div class="form-group">
+                    <a href="/recovery" class="btn  btn-outline form-control">FORGOTTEN PASSWORD </a>
+                </div>
+                 <div class="form-group">
+                    <a href="/register" class="btn  btn-outline form-control">DO NOT HAVE AN ACCOUNT</a>
+                </div>
+	      </form>
+		</div>
+	</div>
+</div>
+
+<% include footer %>

@@ -1,0 +1,75 @@
+<% include adminloginheader %>
+
+
+ <div class="page-content">
+      <div class="row">
+      <div class="col-md-2">
+        <% include adminloginsidebar %>
+      </div>
+		  <div class="col-md-10">
+		  	<div class="row">
+				 <table class="table table-striped" style="font-size: 17px;">
+                  <thead>
+                    <tr>
+                      <th>Username</th>
+                      <th>Pay date</th>
+                      <th>Depositor name</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                <% for(var i=0; i < stock.users.length; i++) { %>
+                    <tr>
+                      <td>
+                         <% if ( stock.users[i].user == null){ %>
+                           pending
+                        <% } else { %>
+                          <%= stock.users[i].user.username %>
+                         <% } %>
+                      </td>
+                      <td> 
+                          <% if ( stock.users[i].payAt == null){ %>
+                           pending
+                        <% } else { %>
+                          <%= stock.users[i].payAt %>
+                         <% } %>
+                      </td>
+                       <td> 
+                          <% if ( stock.users[i].depositorname == null){ %>
+                           pending
+                        <% } else { %>
+                          <%= stock.users[i].depositorname %>
+                         <% } %>
+                      </td>
+                      <td> 
+                          <% if ( stock.users[i].amount == null){ %>
+                           pending
+                        <% } else { %>
+                          <%= stock.users[i].amount %>
+                         <% } %>
+                      </td>
+                       <% if ( stock.users[i].amount != null){ %>
+                          <td><a class="btn btn-success" href="#">Confirm pay</a></td>
+                           </tr>
+                         <% } %>
+                      <td>
+                           <% if ( stock.users[i].user == null){ %>
+                            <a class="btn btn-danger" href="#">Remove</a></td>
+                          <% } else { %>
+                            <a href="/admin/userdetails/<%= stock.users[i].user.username %>">see details</a>
+                           <% } %>
+                      </td>
+                      </tr>
+	  			      <% } %>
+                  </tbody>
+                </table>
+		  	</div>
+		  </div>
+		</div>
+    </div>
+
+
+<script src="/js/jquery-3.1.1.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

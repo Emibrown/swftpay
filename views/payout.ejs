@@ -1,0 +1,41 @@
+<% include loginheader %>
+
+
+ <div class="page-content">
+      <div class="row">
+      <div class="col-md-2">
+        <% include loginsidebar %>
+      </div>
+		  <div class="col-md-10">
+		  	<div class="row">
+		  	<div></div>
+		  		<div role="alert" class=" col-md-12 alert alert-info" style="font-size: 15px;">
+		  			Hello! <%= currentUser.username %> please do not Join if you dont have money to payout. fialure to payout your stock may be Withdrawn in some cases. Or your account will be blocked
+				</div>
+				 <% if (infos == ""){ %>
+	          	<div></div>
+	            <% } else { %>
+	           		<div role="alert" class="alert alert-success"><%= infos %></div>
+	             <% } %>
+		  	</div>
+		  	<div class="row">
+		  	<%for (var stocks in stock){%>
+				  <div class="col-md-4">
+				  <form action="/payout/<%= currentUser._id %>/<%= stock[stocks].name %>" method="POST">
+		  			<button>
+		  				<div class=" stock content-box-large box-with-header text-center" style="font-size: 15px; margin-bottom: 10px; padding-bottom: 80px; padding-top: 80px;">
+			  			<h1 class="text-info" style="font-size: 80px;"><%= stock[stocks].value %></h1>
+			  			<p style="font-size: 25px" class="text-info">70% Of Your Payout</p>
+			  			<h1 class="btn-info" style="font-size: 40px;">STOCK</h1>
+					</div>
+		  			</button>
+		  		</form>
+		  		</div>   
+			<%}%>
+		  	</div>
+		  </div>
+		</div>
+    </div>
+
+
+<% include loginfooter %>

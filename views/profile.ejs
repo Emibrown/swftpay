@@ -1,0 +1,102 @@
+<% include loginheader %>
+
+
+<div class="page-content">
+    	<div class="row">
+		  <div class="col-md-2">
+		  	<% include loginsidebar %>
+		  </div>
+		  <div class="col-md-10">
+		  	<div class="row">
+	  				<div class="col-md-8">
+	  					<div class="content-box-large">
+			  				<div class="panel-heading">
+					            <div class="panel-title">USER DETIALS</div>
+					        </div>
+			  				<div class="panel-body">
+			  				  <% if (infos == ""){ %>
+					          	<div></div>
+					            <% } else { %>
+					           		<div role="alert" class="alert alert-success"><%= infos %></div>
+					             <% } %>
+			  					<form action="/edit/profile/detials" method="POST">
+									<fieldset>
+										<div class="form-group">
+											<label>Username</label>
+											<span class="form-control"><%= user.username %></span>
+										</div>
+										<div class="form-group">
+											<label>Full Name</label>
+											<input class="form-control" placeholder="Enter your full name" name="fullname" value="<%= user.fullname %>" type="text">
+										</div>
+										<div class="form-group">
+											<label>Country</label>
+											<input class="form-control" placeholder="Enter your country" name="country" value="<%= user.country %>" type="text">
+										</div>
+										<div class="form-group">
+											<label>Phone Number-1</label>
+											<input class="form-control" placeholder="Enter your phone number" name="contact" value="<%= user.contact %>" type="text">
+										</div>
+										<div class="form-group">
+											<label>Phone Number-2</label>
+											<input class="form-control" placeholder="Enter your phone number" name="contact2" value="<%= user.contact2 %>" type="text">
+										</div>
+										 <div class="form-group">
+		                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+		                                </div>
+									</fieldset>
+								</form>
+			  				</div>
+			  			</div>
+	  				</div>
+	  				 <div class="col-md-4">
+				        <div class="content-box-large">
+				          <div class="panel-heading">
+				          <div class="panel-title"></div>
+				          
+				        </div>
+				          <div class="panel-body" style="text-align:center">
+				            <img src="/images/user.jpeg" alt="Team" class="img-circle">
+				            <br><br>
+				             <button type="submit" class="btn btn-success form-control">Select photo</button>
+				             <br><br>
+				             <button type="submit" class="btn btn-primary form-control">Upload</button>
+				          </div>
+				        </div>
+				        </div>
+	  			</div>
+	  			<div class="row">
+	  				<div class="col-md-8">
+	  					<div class="content-box-large">
+			  				<div class="panel-heading">
+					            <div class="panel-title">BANK DETIALS</div>
+					        </div>
+			  				<div class="panel-body">
+			  					<form action="/edit/profile/bank" method="POST">
+									<fieldset>
+										<div class="form-group">
+											<label>Bank Name</label>
+											<input class="form-control" placeholder="Enter your  bank name" name="bank" value="<%= user.bank %>" type="text">
+										</div>
+										<div class="form-group">
+											<label>Account Name</label>
+											<input class="form-control" placeholder="Enter your account name" name="accountnum" value="<%= user.accountnum %>" type="text">
+										</div>
+										<div class="form-group">
+											<label>Account Numbar</label>
+											<input class="form-control" placeholder="Enter your account number" name="accountname" value="<%= user.accountname %>" type="text">
+										</div>
+										<div class="form-group">
+		                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+		                                </div>
+									</fieldset>
+								</form>
+			  				</div>
+			  			</div>
+	  				</div>
+	  			</div>
+		  </div>
+
+		</div>
+
+<% include loginfooter %>

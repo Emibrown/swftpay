@@ -1,0 +1,42 @@
+<% include adminloginheader %>
+
+
+<div class="page-content">
+	<div class="row">
+	  <div class="col-md-2">
+	  	<% include adminloginsidebar %>
+	  </div>
+	  <div class="col-md-10">
+	  			 <table class="table table-striped" style="font-size: 20px;">
+                  <thead>
+                    <tr>
+                      
+                      <th>Full Name</th>
+                      <th>Email</th>
+                      <th>Username</th>
+                      <th>Gender</th>
+                      <th>Country</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%for (var user in users){%>
+                    <tr>
+                      <td><%= users[user].fullname %></td>
+                      <td><%= users[user].email %></td>
+                      <td><%= users[user].username %></td>
+                      <td><%= users[user].gender %></td>
+                      <td><%= users[user].country %></td>
+                      <td><a href="/admin/userdetails/<%= users[user].username %>">see details</a></td>
+                      </tr>
+	  				<%}%>
+                  </tbody>
+                </table>
+	 	</div>
+	</div>
+</div>
+
+
+<script src="/js/jquery-3.1.1.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

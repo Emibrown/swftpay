@@ -1,0 +1,96 @@
+<% include header %>
+
+<aside class="fh5co-page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="fh5co-page-heading-lead">
+                       Join sp Today and start making money
+                        <span class="fh5co-border"></span>
+                    </h1>
+                    
+                </div>
+            </div>
+        </div>
+    </aside>
+<!-- registration form -->
+	<div class="container">
+	     <p class="text-muted"> please ensure tp provide current details .<br> If you aready have an account <a href="/login">login here</a></p>
+
+	      <% if (errors == ""){ %>
+          	<div></div>
+            <% } else { %>
+           		<div role="alert" class="alert alert-danger"><%= errors %></div>
+             <% } %>
+              <% if (infos == ""){ %>
+                <div></div>
+                <% } else { %>
+                    <div role="alert" class="alert alert-success"><%= infos %></div>
+                 <% } %>
+	     	 <form action="/register" method="POST" id="signupForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box">
+                                <div class="form-group">
+                                    <label for="name-login">Fullname</label>
+                                    <input class="form-control" name="fullname" placeholder="Enter your fullname" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email-login">Gender</label>
+                                    <select class="form-control" name="gender">
+										<option value="" selected="selected">-- Select Sex --</option>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
+									</select>
+                                </div> 
+								<div class="form-group">
+                                    <label for="email-login">Country</label>
+                                    <select class="form-control" name="country">
+										<option value="" selected="selected">-- Select State --</option>
+										<option>Nigeria</option>
+										</select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Choose Username</label> 
+                                    <input class="form-control" name="username" placeholder="Enter your Unique Username. No spaces" type="text">
+								</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="box">
+                                <div class="form-group">
+                                    <label for="contact">Contact Mobile <small>(080x, 070x Format)</small></label>
+                                    <input class="form-control" maxlength="20" name="contact" placeholder="Enter your Mobile number in the 080x, 070x Format" type="text">
+									
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input class="form-control" name="email" placeholder="Enter your Email address" type="email">
+									
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input class="form-control" id="password1" name="password1" placeholder="Please enter your password" type="password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Confirm Password</label>
+                                    <input class="form-control" id="password2" name="password2" placeholder="Please confirm your password" type="password">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary form-control">Create Account</button>
+                                </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.row -->
+            </form>
+          </div>
+
+       
+         <!-- /.container -->   
+
+
+<% include footer %>

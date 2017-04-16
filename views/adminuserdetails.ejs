@@ -1,0 +1,82 @@
+<% include adminloginheader %>
+
+
+<div class="page-content">
+	<div class="row">
+	  <div class="col-md-2">
+	  	<% include adminloginsidebar %>
+	  </div>
+	  <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-6">
+             <table class="table table-striped" style="font-size: 20px;">
+                  <tbody>
+                  <h1>User Details</h1>
+                    <tr>
+                      <th>Full name</th>
+                      <td><%= user.fullname %></td>
+                    </tr>
+                     <tr>
+                      <th>Username</th>
+                      <td><%= user.username %></td>
+                    </tr>
+                     <tr>
+                      <th>Gender</th>
+                      <td><%= user.gender %></td>
+                    </tr>
+                     <tr>
+                      <th>Country</th>
+                      <td><%= user.country %></td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+        <div class="col-md-6">
+          <table class="table table-striped" style="font-size: 20px;">
+                  <tbody>
+                  <h1>Contact Details</h1>
+                    <tr>
+                      <th>Email Address</th>
+                      <td><%= user.email %></td>
+                    </tr>
+                     <tr>
+                      <th>Phone number 1</th>
+                      <td><%= user.contact %></td>
+                    </tr>
+                     <tr>
+                      <th>Phone number 1</th>
+                      <td><%= user.contact2 %></td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped" style="font-size: 20px;">
+                  <tbody>
+                  <h1>Bank Details</h1>
+                    <tr>
+                      <th>Bank name</th>
+                      <td><%= user.bank %></td>
+                    </tr>
+                     <tr>
+                      <th>Account name</th>
+                      <td><%= user.accountname %></td>
+                    </tr>
+                     <tr>
+                      <th>account number</th>
+                      <td><%= user.accountnum %></td>
+                    </tr>
+                  </tbody>
+                </table>
+      </div>
+      </div>
+
+	 	</div>
+	</div>
+</div>
+
+
+<script src="/js/jquery-3.1.1.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
