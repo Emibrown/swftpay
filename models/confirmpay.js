@@ -8,7 +8,8 @@ var confirmpaySchema = mongoose.Schema(
 		        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 		        confirmAt: {type: Date, default: Date.now},
 		        depositorname:{type: String},
-		        ammount:{type: String},
+		        amount:{type: String},
+		        status: {type: Boolean,default: false},
 			 }]
     }
 )

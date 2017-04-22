@@ -1,57 +1,72 @@
 <% include loginheader %>
 
 
- <div class="page-content">
-      <div class="row">
-      <div class="col-md-2">
-        <% include loginsidebar %>
-      </div>
-		  <div class="col-md-10">
+<% include loginsidebar %>
+
+  <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+		 <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-money"></i> Paytrack</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-money"></i>Paytrack</li>	
+					</ol>
+				</div>
+			</div>
+
+		<% if (errors == ""){ %>
+	          	<div></div>
+	            <% } else { %>
+	           		<div role="alert" class="alert alert-danger"><%= errors %></div>
+	             <% } %>
+
+		  <div class="col-md-12">
 		  	<div class="row">
-		  		<div role="alert" class=" col-md-12 alert alert-info" style="font-size: 20px;">
+		  		<div class=" col-md-12 alert blue-bg" style="font-size: 20px;">
 		  			Hi! <%= currentUser.username %> You have <%= pendingstock[0].value %> stock pending  make payment on your stock else your account will be blocked
 				</div>
 		  	</div>
 		  	<div class="row">
-		  			<div role="alert" class=" col-md-12 alert alert-info" style="font-size: 20px;">
-			  			<h4>Payment Details</h4>
+		  			<div  class=" col-md-12 info-box green-bg" style="font-size: 20px;">
+			  			<h2>Payment Details</h2>
 			  			<p>BANK: UBA</p>
 			  			<p>ACCOUNT NAME: EKENE EMEKA TONY</p>
 			  			<p>ACCOUNT NUMBER: 0965439954</p>
 					</div>
 		  	</div>
 		  	<div class="row">
-		  			<div role="alert" class=" col-md-12 alert alert-danger" style="font-size: 20px;">
-			  			After successfull payment please upload your depositor name stock equivilent amount in your currency.
-					</div>
-		  	</div>
-		  	<div class="row">
-		  		<div class="col-md-4">
-		  		<% if (errors == ""){ %>
-	          	<div></div>
-	            <% } else { %>
-	           		<div role="alert" class="alert alert-danger"><%= errors %></div>
-	             <% } %>
-		  			 <form action="/updatestock/<%= pendingstock[0]._id %>" method="POST" id="signupForm">
-						 <div class="form-group">
-				            <label for="name-login">Depositor name</label>
-				            <input class="form-control" name="depositor" placeholder="Enter Depositor name" type="text">
-				        </div>
-				         <div class="form-group">
-				            <label for="name-login">Amount</label>
-				            <input class="form-control" name="amount" placeholder="Enter amount paid" type="text">
-				        </div>
-				         <div class="form-group">
-				            <div class="form-group">
-			                    <button type="submit" class="btn btn-primary form-control">Send</button>
-			                </div>
-				        </div>
-				      </form>
+		  		<div class="col-md-6">
+		  			 <section class="panel">
+                          <header style="font-size: 20px" class="panel-heading">
+                              Deposite Details
+                          </header>
+                          <div class="panel-body">
+                          			 <form action="/updatestock/<%= pendingstock[0]._id %>" method="POST" id="signupForm">
+									 <div class="form-group">
+							            <label for="name-login">Depositor name</label>
+							            <input class="form-control" name="depositor" placeholder="Enter Depositor name" type="text">
+							        </div>
+							         <div class="form-group">
+							            <label for="name-login">Amount</label>
+							            <input class="form-control" name="amount" placeholder="Enter amount paid" type="text">
+							        </div>
+							         <div class="form-group">
+							            <div class="form-group">
+						                    <button type="submit" class="btn btn-primary form-control">Send</button>
+						                </div>
+							        </div>
+							      </form>
+                          </div>
+                      </section>
 		  		</div>
-		  	</div>
-		  </div>
+	  			<div role="alert" class=" col-md-6 alert red-bg" style="font-size: 20px;">
+		  			After successfull payment please upload your depositor name and stock equivilent amount in your currency.
+				</div>
+			</div>
 		</div>
-    </div>
+	</section>
+</section>
 
 
 <% include loginfooter %>

@@ -3556,7 +3556,7 @@ tbody.collapse.in {
   .navbar-right ~ .navbar-right {
     margin-right: 0; } }
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: black;
   border-color: #e7e7e7; }
 .navbar-default .navbar-brand {
   color: #777; }
@@ -5244,7 +5244,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 40px;
   padding-right: 40px;
   margin-bottom: 0;
-  background: #fff;
+  background: black;
   -webkit-box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
   -ms-box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.1);
@@ -5257,7 +5257,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 0px; } }
 #fh5co-header > .navbar li a {
   text-transform: uppercase;
-  color: #000;
+  color: white;
   font-weight: normal;
   font-family: "Montserrat", arial, sans-serif; }
 #fh5co-header > .navbar li a > span .border {
@@ -5506,7 +5506,7 @@ pre {
   cursor: pointer;
   text-decoration: none; }
 .fh5co-nav-toggle.active i::before, .fh5co-nav-toggle.active i::after {
-  background: #000; }
+  background: white; }
 .fh5co-nav-toggle:hover, .fh5co-nav-toggle:focus, .fh5co-nav-toggle:active {
   outline: none;
   border-bottom: none !important; }
@@ -5522,13 +5522,13 @@ pre {
   font: bold 14px/.4 Helvetica;
   text-transform: uppercase;
   text-indent: -55px;
-  background: #000;
+  background: white;
   transition: all .2s ease-out; }
 .fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
   content: '';
   width: 25px;
   height: 3px;
-  background: #000;
+  background: white;
   position: absolute;
   left: 0;
   -webkit-transition: 0.2s;
@@ -5908,7 +5908,7 @@ pre {
   color: #fff;
   margin: 0;
   padding: 0;
-  font-weight: 100; }
+  font-weight: 20; }
 .owl-carousel-fullwidth .item .fh5co-owl-text .fh5co-lead {
   font-weight: 300;
   margin-bottom: 30px;
@@ -5916,9 +5916,9 @@ pre {
   letter-spacing: 1px;
   font-family: "Montserrat", arial, sans-serif; }
 .owl-carousel-fullwidth .item .fh5co-owl-text .fh5co-sub-lead {
-  font-size: 30px;
+  font-size: 28px;
   line-height: 42px;
-  font-weight: 100;
+  font-weight: 300;
   font-family: "Roboto", arial, sans-serif; }
 
 .js .to-animate {

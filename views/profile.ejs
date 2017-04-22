@@ -1,25 +1,32 @@
 <% include loginheader %>
 
 
-<div class="page-content">
-    	<div class="row">
-		  <div class="col-md-2">
-		  	<% include loginsidebar %>
-		  </div>
-		  <div class="col-md-10">
-		  	<div class="row">
-	  				<div class="col-md-8">
-	  					<div class="content-box-large">
-			  				<div class="panel-heading">
-					            <div class="panel-title">USER DETIALS</div>
-					        </div>
-			  				<div class="panel-body">
-			  				  <% if (infos == ""){ %>
-					          	<div></div>
-					            <% } else { %>
-					           		<div role="alert" class="alert alert-success"><%= infos %></div>
-					             <% } %>
-			  					<form action="/edit/profile/detials" method="POST">
+<% include loginsidebar %>
+
+  <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+		 <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-user"></i>Profile</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-user"></i>Profile</li>	
+					</ol>
+				</div>
+			</div>
+ <% if (infos == ""){ %>
+  	<div></div>
+    <% } else { %>
+   		<div role="alert" class="alert alert-success"><%= infos %></div>
+     <% } %>
+				<div class="row">
+                  <div class="col-lg-8">
+                      <section class="panel">
+                          <header style="font-size: 20px" class="panel-heading">
+                              User Details
+                          </header>
+                          <div class="panel-body">
+                          			<form action="/edit/profile/detials" method="POST">
 									<fieldset>
 										<div class="form-group">
 											<label>Username</label>
@@ -46,33 +53,35 @@
 		                                </div>
 									</fieldset>
 								</form>
-			  				</div>
-			  			</div>
-	  				</div>
-	  				 <div class="col-md-4">
-				        <div class="content-box-large">
-				          <div class="panel-heading">
-				          <div class="panel-title"></div>
-				          
-				        </div>
-				          <div class="panel-body" style="text-align:center">
-				            <img src="/images/user.jpeg" alt="Team" class="img-circle">
+                          </div>
+                      </section>
+                  </div>
+
+                 <div class="col-lg-4">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              Profile photo
+                          </header>
+                          <div class="panel-body text-center">
+                            <img style="width: 150px;" src="/images/logo.png" alt="Team" class="img-circle">
+							
 				            <br><br>
 				             <button type="submit" class="btn btn-success form-control">Select photo</button>
 				             <br><br>
 				             <button type="submit" class="btn btn-primary form-control">Upload</button>
-				          </div>
-				        </div>
-				        </div>
-	  			</div>
-	  			<div class="row">
-	  				<div class="col-md-8">
-	  					<div class="content-box-large">
-			  				<div class="panel-heading">
-					            <div class="panel-title">BANK DETIALS</div>
-					        </div>
-			  				<div class="panel-body">
-			  					<form action="/edit/profile/bank" method="POST">
+                          </div>
+                      </section>
+                  </div>
+               </div><!--/.row-->
+
+               <div class="row">
+                  <div class="col-lg-8">
+                      <section class="panel">
+                          <header  style="font-size: 20px" class="panel-heading">
+                              Bank Details
+                          </header>
+                          <div class="panel-body">
+                          		<form action="/edit/profile/bank" method="POST">
 									<fieldset>
 										<div class="form-group">
 											<label>Bank Name</label>
@@ -91,12 +100,16 @@
 		                                </div>
 									</fieldset>
 								</form>
-			  				</div>
-			  			</div>
-	  				</div>
-	  			</div>
-		  </div>
+                          </div>
+                      </section>
+                  </div>
+               </div><!--/.row-->
 
-		</div>
+               
+          </section>
+      </section>
+      <!--main content end-->
+		 
+	  				
 
 <% include loginfooter %>

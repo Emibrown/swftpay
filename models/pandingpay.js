@@ -8,8 +8,7 @@ var pandingpaySchema = mongoose.Schema(
 		        user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 		        payAt: {type: Date},
 		        depositorname:{type: String},
-		        amount:{type: String},
-		        stockAt: { type: Date, expires: 60 }
+		        amount:{type: String}
 			 }]
     }
 )

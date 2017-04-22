@@ -1,11 +1,19 @@
 <% include adminloginheader %>
 
 
- <div class="page-content">
-      <div class="row">
-      <div class="col-md-2">
-        <% include adminloginsidebar %>
-      </div>
+ <% include adminloginsidebar %>
+
+  <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+		 <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-laptop"></i>Stock</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-laptop"></i>Stock</li>	
+					</ol>
+				</div>
+			</div>
 		  <div class="col-md-10">
 		  <div class="row">
 		  	<div class="col-md-12">
@@ -43,7 +51,8 @@
 		  				<div class=" stock content-box-large box-with-header text-center" style="font-size: 15px; margin-bottom: 10px; padding-bottom: 80px; padding-top: 80px;">
 			  			<h1 class="text-info" style="font-size: 80px;"><%= stocks[stock].value %></h1>
 			  			<a href="/admin/removestock/<%= currentUser.username %>/<%= stocks[stock].name %>" style="font-size: 25px" class="btn btn-danger">Remove</a>
-			  			<a href="/admin/stockusers/<%= stocks[stock]._id %>" class=" btn btn-info" style="font-size: 40px;">Users</a>
+			  			<a href="/admin/stockpending/<%= stocks[stock].name %>" class=" btn btn-info" style="font-size: 40px;">Pending</a>
+			  			<a href="/admin/stockconfirm/<%= stocks[stock].name %>" class=" btn btn-info" style="font-size: 40px;">Confirm</a>
 					</div>
 		  		</div>   
 			<%}%>
@@ -53,7 +62,4 @@
     </div>
 
 
-<script src="/js/jquery-3.1.1.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+<% include adminloginfooter %>

@@ -1,20 +1,29 @@
 <% include loginheader %>
 
 
- <div class="page-content">
-      <div class="row">
-      <div class="col-md-2">
-        <% include loginsidebar %>
-      </div>
-		  <div class="col-md-10">
-		  	<div class="row">
-		  	<div></div>
-		  		<div role="alert" class=" col-md-12 alert alert-info" style="font-size: 20px;">
-		  			Hello! <%= currentUser.username %> You have no pending stock please goto payout and select a stock
+ <% include loginsidebar %>
+
+  <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+		 <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-money"></i> Paytrack</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-money"></i>Paytrack</li>	
+					</ol>
 				</div>
+			</div>
+
+		  <div class="col-md-12">
+		  	<div class="row">
+		  		<div role="alert" class=" col-md-12 info-box blue-bg" style="font-size: 20px;">
+					<div> <i style="font-size: 60px;" class="fa fa-warning"></i></div>
+			  			Hi <%= currentUser.username %> your stock has been confirmed and payed. if you have successfully receiveed your payment click on "Confirm your payment" so you can get new stock.
+					</div>
 		  	</div>
 		  	<div class="row">
-		  
+		  		 <td><a class="btn btn-primary btn-lg" href="/confirm/<%= confirmstock[0].name %>/<%= confirmstock[0].users[0]._id %>">Confirm your payment</a></td>
 		  	</div>
 		  </div>
 		</div>

@@ -1,42 +1,62 @@
 <% include adminloginheader %>
 
 
-<div class="page-content">
-	<div class="row">
-	  <div class="col-md-2">
-	  	<% include adminloginsidebar %>
-	  </div>
-	  <div class="col-md-10">
-	  			 <table class="table table-striped" style="font-size: 20px;">
-                  <thead>
-                    <tr>
-                      
-                      <th>Full Name</th>
+<% include adminloginsidebar %>
+
+  <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+     <div class="row">
+        <div class="col-lg-12">
+          <h3 class="page-header"><i class="fa fa-laptop"></i>All users</h3>
+          <ol class="breadcrumb">
+            <li><i class="fa fa-laptop"></i>All users</li>  
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+                
+        <div class="col-lg-12 col-md-12">  
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h2><i class="fa fa-flag-o red"></i><strong>Registered Users</strong></h2>
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                     <th>Full Name</th>
                       <th>Email</th>
                       <th>Username</th>
                       <th>Gender</th>
                       <th>Country</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <%for (var user in users){%>
+                      <th>Refferals</th>
+                  </tr>
+                </thead>   
+                <tbody>
+                  <%for (var user in users){%>
                     <tr>
+                      <td><%= user %></td>
                       <td><%= users[user].fullname %></td>
                       <td><%= users[user].email %></td>
                       <td><%= users[user].username %></td>
                       <td><%= users[user].gender %></td>
                       <td><%= users[user].country %></td>
-                      <td><a href="/admin/userdetails/<%= users[user].username %>">see details</a></td>
+                      <td><%= users[user].refferals.length %></td>
+                      <td>
+                       <a class="btn btn-primary" href="/admin/userdetails/<%= users[user].username %>"><i class="icon_plus_alt2"></i></a>
+                      </td>
                       </tr>
-	  				<%}%>
-                  </tbody>
-                </table>
-	 	</div>
-	</div>
-</div>
+                   <%}%>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+  
+          </div>  
+
+        </div><!--/col-->
 
 
-<script src="/js/jquery-3.1.1.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+  <% include adminloginfooter %>

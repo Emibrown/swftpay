@@ -1,11 +1,46 @@
-<div class="sidebar content-box" style="display: block;">
-    <ul class="nav">
-        <!-- Main menu -->
-        <li><a href="/dashboard/<%= currentUser.username %>"><i class="glyphicon glyphicon-home"></i> dashboard</a></li>
-        <li><a href="/profile/<%= currentUser.username %>"><i class="glyphicon glyphicon-calendar"></i>Profile</a></li>
-        <li><a href="/Payout/<%= currentUser.username %>"><i class="glyphicon glyphicon-stats"></i>Payout</a></li>
-        <li><a href="/Paytrack/<%= currentUser.username %>/<%= currentUser._id %>"><i class="glyphicon glyphicon-list"></i>Paytrack</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-record"></i>Support</a></li>
-         <li><a href="/logout"><i class="glyphicon glyphicon-log-out"></i>Logout</a></li>
-    </ul>
- </div>
+ <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu">                
+                  <li class="">
+                      <a class="" href="/dashboard">
+                          <i class="icon_house_alt"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>   
+                  <li class="">
+                      <a class="" href="/profile">
+                          <i class="icon_profile"></i>
+                          <span>Profile</span>
+                      </a>
+                  </li>  
+                  <li class="">
+                      <a class="" href="/Payout">
+                          <i class="icon_bag"></i>
+                          <span>Payout</span>
+                      </a>
+                  </li>  
+                  <li class="">
+                      <a class="" href="/Paytrack">
+                         <i class="fa fa-shopping-cart"></i>
+                          <span>Paytrack</span>
+                      </a>
+                  </li>  
+                    <li class="">
+                      <a class="" href="/changepassword">
+                         <i class="fa fa-shopping-cart"></i>
+                          <span>Change password</span>
+                      </a>
+                  </li>  
+                   <li class="">
+                      <a class=""  href="/logout">
+                          <i class="icon_key_alt"></i>
+                          <span>Logout</span>
+                      </a>
+                  </li>  
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->

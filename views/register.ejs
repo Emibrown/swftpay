@@ -20,12 +20,17 @@
 	      <% if (errors == ""){ %>
           	<div></div>
             <% } else { %>
-           		<div role="alert" class="alert alert-danger"><%= errors %></div>
+           		<div role="alert" class="alert alert-danger">
+                <i style="font-size: 30px;" class="fa fa-warning"></i>
+                <span> <%= errors %></span> 
+                   </div>
              <% } %>
               <% if (infos == ""){ %>
                 <div></div>
                 <% } else { %>
-                    <div role="alert" class="alert alert-success"><%= infos %></div>
+                    <div role="alert" class="alert alert-success">
+                     <i style="font-size: 30px;" class="glyphicon glyphicon-ok-circle"></i>
+                    <%= infos %> <a href="/login">login here</a></div>
                  <% } %>
 	     	 <form action="/register" method="POST" id="signupForm">
                 <div class="row">

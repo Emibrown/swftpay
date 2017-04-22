@@ -72,6 +72,61 @@ routeradmin.post('/stock/:username', ensureAuthenticated, function(req, res, nex
   }
 });
 
+
+
+routeradmin.get('/remove/:stockid/:stockuserid', ensureAuthenticated, function(req, res, next) {
+  Pandingpay.update({ _id: req.params.stockid },{ $pull: { 'users': { _id: req.params.stockuserid } } }, function(err){
+    if (err) { 
+        return next(err); 
+      }else{
+        return res.redirect("/admin/stockpending/" + req.params.stockid);
+      }
+  });
+});
+
+routeradmin.get('/confirm/:userid/:stockname', ensureAuthenticated, function(req, res, next) {
+  User.findOne({ _id: req.params.userid }, function(err, user) {
+  if (err) { return next(err); }
+  if (!user) { return next(404); }
+      User.findOne({ _id: user.refferBy }, function(err, userf) {
+        if (err) { return next(err); }
+        if(userf){
+          User.findOne({ refferals: { $elemMatch: { $eq: user._id} } }, function(err, users){
+              if(err){return next(err);}
+              if(!users){
+                userf.refferals.push(user._id);
+                userf.save(function(err) {
+                  if(err){return next(err);}
+                });
+              }
+          });
+        } 
+      });
+      Pandingpay.find({ name: req.params.stockname },{ users: { $elemMatch: { user: user._id } } }, function(err, pendingstock){
+        if (err) { return next(err); }
+         Confirmpay.update({ name: req.params.stockname },{ $push:{ users:{ user: user._id, confirmAt: Date.now(), depositorname: pendingstock[0].users[0].depositorname , amount: pendingstock[0].users[0].amount}}}, function(err){
+              if (err) { return next(err); }
+               Pandingpay.update({ name: req.params.stockname },{ $pull: { 'users': { user: req.params.userid } } }, function(err){
+                if (err) { 
+                    return next(err); 
+                  }else{
+                    return res.redirect("/admin/stockpending/" + req.params.stockname);
+                  }
+              });
+         });
+      });
+  });
+});
+
+
+routeradmin.get('/pay/:stockname/:userid', ensureAuthenticated, function(req, res, next) {
+     Confirmpay.update( {name: req.params.stockname, "users.user": req.params.userid },{ $set: { "users.$.status" : true}},function(err){
+      if (err) { return next(err); }
+      return res.redirect("/admin/stockconfirm/" + req.params.stockname);
+    });
+});
+ 
+
 routeradmin.get("/removestock/:username/:name", ensureAuthenticated, function(req, res, next) {
  Pandingpay.findOneAndRemove({name: req.params.name}, function(err){
       if (err) { 
@@ -109,13 +164,24 @@ routeradmin.get("/userdetails/:username", ensureAuthenticated, function(req, res
 
 
 
-routeradmin.get("/stockusers/:id", ensureAuthenticated, function(req, res, next) {
-  Pandingpay.findOne({_id: req.params.id})
+routeradmin.get("/stockpending/:name", ensureAuthenticated, function(req, res, next) {
+  Pandingpay.findOne({name: req.params.name})
   .populate('users.user')
   .exec(function(err, stock) {
   if (err) { return next(err); }
   if (!stock) { return next(404); }
-  res.render("adminstockusers", { stock: stock });
+  res.render("adminstockpending", { stock: stock });
+  console.log(stock);
+  });
+});
+
+routeradmin.get("/stockconfirm/:name", ensureAuthenticated, function(req, res, next) {
+  Confirmpay.findOne({name: req.params.name})
+  .populate('users.user')
+  .exec(function(err, stock) {
+  if (err) { return next(err); }
+  if (!stock) { return next(404); }
+  res.render("adminstockconfirm", { stock: stock });
   console.log(stock);
   });
 });

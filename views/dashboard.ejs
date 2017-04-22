@@ -1,73 +1,72 @@
 <% include loginheader %>
 
+<% include loginsidebar %>
 
-<div class="page-content">
-    	<div class="row">
-		  <div class="col-md-2">
-		  	<% include loginsidebar %>
-		  </div>
-		  <div class="col-md-10">
-		  	<div class="row">
-		  		<div class="col-md-6">
-		  			<div class="content-box-large ">
-		  				<div class="panel-heading">
-							<div class="panel-title"></div>
-						</div>
-		  				<div class="panel-body" style="text-align:center">
-		  					
-<img src="/images/user.jpeg" alt="Team" class="img-circle">
-<h3><strong><%= user.fullname %></strong></h3>
-<h4><%= user.contact %></h4>
-<h5><%= user.email %></h5>
-<h6><%= user.username %></h6>
+  <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+		 <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-laptop"></i>Dashboard</li>	
+					</ol>
+				</div>
+			</div>
+             
+			  <div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="info-box blue-bg">
+						 <i class="icon_bag"></i>
+						<div class="count"><%= user.refferals.length * 0.5 %>%</div>
+						<div class="title">additional stock value</div>						
+					</div><!--/.info-box-->			
+				</div><!--/.col-->
+				
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="info-box brown-bg">
+						<i class="fa fa-shopping-cart"></i>
+						<div class="count"><%= stock %></div>
+						<div class="title 
+							 <% if (status == 'Confirm'){ %>
+				          		text-success
+				            <% } else { %>
+				           		text-danger
+				             <% } %>
+						"><%= status %></div>	
+						<div class="title">current stock</div>						
+					</div><!--/.info-box-->			
+				</div><!--/.col-->	
+				
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="info-box dark-bg">
+						<i class="fa fa-thumbs-o-up"></i>
+						<div class="count"><%= user.refferals.length %></div>
+						<div class="title">refferals</div>						
+					</div><!--/.info-box-->			
+				</div><!--/.col-->
+			</div><!--/.row-->
 
-							<br /><br />
-		  				</div>
-		  			</div>
-		  		</div>
+			<div class="row">
+                  <div class="col-lg-6">
+                      <section class="panel">
+                          <header class="panel-heading">
+                              Basic Details
+                          </header>
+                          <div class="panel-body text-center">
+                            <img style="width: 200px;" src="/images/logo.png" alt="Team" class="img-circle">
+							<h3><strong><i class="fa fa-user"></i>: <%= user.fullname %></strong></h3>
+							<h4><i class="fa fa-phone"></i>: <%= user.contact %></h4>
+							<h4><i class="icon_house_alt"></i>: <%= user.email %></h4>
+							<h4><i class="icon_profile"></i>: <%= user.username %></h4>
+                          </div>
+                      </section>
+                  </div>
+               </div><!--/.row-->
 
-		  		<div class="col-md-6">
-		  			<div class="row">
-		  				<div class="col-md-12">
-		  					<div class="content-box-header">
-			  					<div class="panel-title">Your Referrals
- List</div>
-				  			</div>
-				  			<div class="content-box-large box-with-header">
-					  			Pellentesque luctus quam quis consequat vulputate. Sed sit amet diam ipsum. Praesent in pellentesque diam, sit amet dignissim erat. Aliquam erat volutpat. Aenean laoreet metus leo, laoreet feugiat enim suscipit quis. Praesent mauris mauris, ornare vitae tincidunt sed, hendrerit eget augue. Nam nec vestibulum nisi, eu dignissim nulla.
-								<br /><br />
-							</div>
-		  				</div>
-		  			</div>
-		  			<div class="row">
-		  				<div class="col-md-12 panel-info">
-		  					<div class="content-box-header">
-			  					<div class="panel-title">Payout Status</div>
-				  			</div>
-				  			<div class="content-box-large box-with-header">
-				  				
-					  			Pellentesque luctus quam quis consequat vulputate. Sed sit amet diam ipsum. Praesent in pellentesque diam, sit amet dignissim erat. Aliquam erat volutpat. Aenean laoreet metus leo, laoreet feugiat enim suscipit quis. Praesent mauris mauris, ornare vitae tincidunt sed, hendrerit eget augue. Nam nec vestibulum nisi, eu dignissim nulla.
-								<br /><br />
-							</div>
-		  				</div>
-		  			</div>
-		  		</div>
-		  	</div>
-
-		  	<div class="row">
-		  		<div class="col-md-12 panel-info">
-		  			<div class="content-box-header panel-heading">
-	  					<div class="panel-title ">Message form Swift-pay</div>
-		  			</div>
-		  			<div class="content-box-large box-with-header">
-			  			Pellentesque luctus quam quis consequat vulputate. Sed sit amet diam ipsum. Praesent in pellentesque diam, sit amet dignissim erat. Aliquam erat volutpat. Aenean laoreet metus leo, laoreet feugiat enim suscipit quis. Praesent mauris mauris, ornare vitae tincidunt sed, hendrerit eget augue. Nam nec vestibulum nisi, eu dignissim nulla.
-						<br /><br />
-					</div>
-		  		</div>
-		  	</div>
-		  </div>
-		</div>
-    </div>
-
+          </section>
+      </section>
+      <!--main content end-->
+		 
 
 <% include loginfooter %>

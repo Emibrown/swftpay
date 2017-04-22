@@ -1,17 +1,27 @@
 <% include adminloginheader %>
 
+<% include adminloginsidebar %>
 
-<div class="page-content">
-	<div class="row">
-	  <div class="col-md-2">
-	  	<% include adminloginsidebar %>
-	  </div>
-	  <div class="col-md-10">
+  <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+     <div class="row">
+        <div class="col-lg-12">
+          <h3 class="page-header"><i class="fa fa-laptop"></i>User info</h3>
+          <ol class="breadcrumb">
+            <li><i class="fa fa-laptop"></i>User info</li>  
+          </ol>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-md-6">
-             <table class="table table-striped" style="font-size: 20px;">
+         <section class="panel">
+              <header class="panel-heading">
+                  User Details
+              </header>
+             <table class="table table-striped">
                   <tbody>
-                  <h1>User Details</h1>
                     <tr>
                       <th>Full name</th>
                       <td><%= user.fullname %></td>
@@ -30,11 +40,15 @@
                     </tr>
                   </tbody>
                 </table>
+                </section>
         </div>
         <div class="col-md-6">
-          <table class="table table-striped" style="font-size: 20px;">
+         <section class="panel">
+              <header class="panel-heading">
+                   Contact Details
+              </header>
+          <table class="table table-striped">
                   <tbody>
-                  <h1>Contact Details</h1>
                     <tr>
                       <th>Email Address</th>
                       <td><%= user.email %></td>
@@ -49,11 +63,17 @@
                     </tr>
                   </tbody>
                 </table>
+                </section>
         </div>
+        </div>
+        <div class="row">
         <div class="col-md-6">
-            <table class="table table-striped" style="font-size: 20px;">
+         <section class="panel">
+              <header class="panel-heading">
+                   Ban Details
+              </header>
+            <table class="table table-striped">
                   <tbody>
-                  <h1>Bank Details</h1>
                     <tr>
                       <th>Bank name</th>
                       <td><%= user.bank %></td>
@@ -68,15 +88,8 @@
                     </tr>
                   </tbody>
                 </table>
+                </section>
       </div>
       </div>
-
-	 	</div>
-	</div>
-</div>
-
-
-<script src="/js/jquery-3.1.1.js"></script>
-<script src="/bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+    
+<% include adminloginfooter %>

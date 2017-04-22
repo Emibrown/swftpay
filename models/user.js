@@ -10,13 +10,18 @@ var userSchema = mongoose.Schema(
         contact2: {type: String,},
         username: {type: String, required: true, unique: true},
         password: {type: String, required: true},
+        refferBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+        refferals:[{ type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
         accountnum:{type: String},
         accountname:{type: String},
         bank:{type: String},
-        stockAt: { type: Date, expires: 60 },
+        stockAt: { type: Date},
         createdAt: {type: Date, default: Date.now}
     }
 )
+
+userSchema.index({ "stockAt": 1 }, { expireAfterSeconds: 0 });
+
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;
