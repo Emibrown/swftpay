@@ -5257,7 +5257,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 0px; } }
 #fh5co-header > .navbar li a {
   text-transform: uppercase;
-  color: white;
+  color: #FBB040;
   font-weight: normal;
   font-family: "Montserrat", arial, sans-serif; }
 #fh5co-header > .navbar li a > span .border {
@@ -5376,10 +5376,10 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 22px; }
 
 .fh5co-section-sub-lead {
-  font-size: 22px;
+  font-size: 14px;
   font-family: "Roboto", arial, sans-serif;
-  font-weight: 100;
-  line-height: 32px; }
+  font-weight: 50;
+  line-height: 30px; }
 
 .fh5co-post {
   padding: 0;

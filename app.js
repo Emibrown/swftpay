@@ -1,6 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var path = require('path');
+var favicon = require("serve-favicon");
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -13,6 +14,8 @@ var index = require('./routes/index');
 var admin = require('./routes/admin');
 var setuppassport = require('./setuppassport');
 var app = express();
+var adminapp = express();
+var userapp = express();
 setuppassport();
 
 
@@ -26,7 +29,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({
+app.use('/user',session({
+  secret: "JHGF>,./?;;LJ8#$?,KL:>>>,,KJJJDHE",
+  resave: true,
+  saveUninitialized: true
+}));
+adminapp.use('/admin',session({
+  name: 'admin.sid',
   secret: "JHGF>,./?;;LJ8#$?,KL:>>>,,KJJJDHE",
   resave: true,
   saveUninitialized: true
@@ -34,12 +43,20 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+adminapp.use('/admin',passport.initialize());
+adminapp.use('/admin',passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, "public/images/favicon.ico")));
 
-app.use('/', index);
-app.use('/admin', admin);
+adminapp.use('/admin', admin);
+app.use('/user', index);
+app.use(adminapp);
 
 
+
+app.all('*', function(req, res) {
+  res.redirect("/user");
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Page Not Found');

@@ -36,10 +36,10 @@
 			 	<%for (var stocks in stock){%>
 			 	
 			 		<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-			 		<a href= "/payout/<%= currentUser._id %>/<%= stock[stocks].name %>">
+			 		<a href= "/user/payout/<%= currentUser._id %>/<%= stock[stocks].name %>">
 					<div class="info-box green-bg">
 							<i class="fa fa-cubes"></i>
-							<div class="count"><%= stock[stocks].value %></div>
+							<div class="count">&#8358;<%= stock[stocks].value %></div>
 							<div class="title"><%= stock[stocks].name %></div>					
 					</div><!--/.info-box-->	
 				</a>		

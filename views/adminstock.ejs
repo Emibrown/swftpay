@@ -25,7 +25,7 @@
 		  	</div>
 		  </div>
 		  <div class="row">
-		  	<form action="/admin/stock/<%= currentUser.username %>" method="POST" id="signupForm">
+		  	<form action="/admin/stock/<%= currentAdmin.username %>" method="POST" id="signupForm">
 		  	<div class="col-md-4">
 		  		 <div class="form-group">
 		            <input class="form-control" name="name" placeholder="Enter Stock name" type="text">
@@ -47,14 +47,15 @@
 		  </div>
 		  	<div class="row">
 		  	<%for (var stock in stocks){%>
-				  <div class="col-md-4">
-		  				<div class=" stock content-box-large box-with-header text-center" style="font-size: 15px; margin-bottom: 10px; padding-bottom: 80px; padding-top: 80px;">
-			  			<h1 class="text-info" style="font-size: 80px;"><%= stocks[stock].value %></h1>
-			  			<a href="/admin/removestock/<%= currentUser.username %>/<%= stocks[stock].name %>" style="font-size: 25px" class="btn btn-danger">Remove</a>
-			  			<a href="/admin/stockpending/<%= stocks[stock].name %>" class=" btn btn-info" style="font-size: 40px;">Pending</a>
-			  			<a href="/admin/stockconfirm/<%= stocks[stock].name %>" class=" btn btn-info" style="font-size: 40px;">Confirm</a>
-					</div>
-		  		</div>   
+		  			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="info-box green-bg">
+							<i class="fa fa-cubes"></i>
+							<div class="count">&#8358;<%= stocks[stock].value %></div>
+							<div class="title"><a href="/admin/removestock/<%= currentAdmin.username %>/<%= stocks[stock].name %>" class="btn btn-danger">Remove</a></div>
+							<div class="title"><a href="/admin/stockpending/<%= stocks[stock].name %>" class=" btn btn-info">Pending</a></div>	
+							<div class="title"><a href="/admin/stockconfirm/<%= stocks[stock].name %>" class=" btn btn-success">Confirm</a></div>					
+					</div><!--/.info-box-->	
+				</div><!--/.col-->
 			<%}%>
 		  	</div>
 		  </div>

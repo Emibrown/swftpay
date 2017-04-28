@@ -16,6 +16,11 @@
             <% } else { %>
            		<div role="alert" class="alert alert-danger"><%= errors %></div>
              <% } %>
+               <% if (infos == ""){ %>
+          	<div></div>
+            <% } else { %>
+           		<div role="alert" class="alert alert-danger"><%= infos %></div>
+             <% } %>
 		 <form action="/admin/login" method="POST" id="signupForm">
 			 <div class="form-group">
 	            <label for="name-login">Username</label>

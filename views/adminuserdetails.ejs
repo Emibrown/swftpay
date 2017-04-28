@@ -70,7 +70,7 @@
         <div class="col-md-6">
          <section class="panel">
               <header class="panel-heading">
-                   Ban Details
+                   Bank Details
               </header>
             <table class="table table-striped">
                   <tbody>
@@ -90,6 +90,79 @@
                 </table>
                 </section>
       </div>
+
+       <div class="col-md-6">
+         <section class="panel">
+              <header class="panel-heading">
+                   Other Details
+              </header>
+            <table class="table table-striped">
+                  <tbody>
+                    <tr>
+                      <th>Stock</th>
+                      <td class="
+                         <% if (status == 'Confirm'){ %>
+                            text-success
+                          <% } else { %>
+                            text-danger
+                           <% } %>
+                      "><%= stock %></td>
+                    </tr>
+                     <tr>
+                      <th>Refferals</th>
+                      <td><%= user.refferals.length %></td>
+                    </tr>
+                     <tr>
+                      <th>Percentage gain</th>
+                      <td><%= user.refferals.length * 0.5%>%</td>
+                    </tr>
+                  </tbody>
+                </table>
+                </section>
       </div>
+      </div>
+
+      <div class="row">
+         <div class="col-md-10 portlets">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="pull-left">Private message</div>
+                </div>
+                <div class="panel-body">
+                  <div class="padd">
+                    
+                      <div class="form quick-post">
+                                      <!-- Edit profile form (not working)-->
+                        <form class="form-horizontal">
+                            <!-- Title -->
+                            <div class="form-group">
+                              <label class="control-label col-lg-2" for="title">Title</label>
+                              <div class="col-lg-10"> 
+                                <input type="text" class="form-control" id="title">
+                              </div>
+                            </div>   
+                            <!-- Content -->
+                            <div class="form-group">
+                              <label class="control-label col-lg-2" for="content">Content</label>
+                              <div class="col-lg-10">
+                                <textarea class="form-control" id="content"></textarea>
+                              </div>
+                            </div>                                     
+                            <!-- Buttons -->
+                      <div class="form-group">
+                                             <!-- Buttons -->
+                       <div class="col-lg-offset-2 col-lg-9">
+                        <button type="submit" class="btn btn-danger">Save Draft</button>
+                       </div>
+                      </div>
+                  </form>
+                </div>
+
+
+                  </div>
+      </div>
+      
+      </section>
+      </section>
     
 <% include adminloginfooter %>

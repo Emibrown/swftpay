@@ -22,7 +22,7 @@ function ensureAuthenticated(req, res, next) {
 
 
 routeradmin.use(function(req, res, next){
-  res.locals.currentUser = req.user;
+  res.locals.currentAdmin = req.user;
   res.locals.errors = req.flash("error");
   res.locals.infos = req.flash("info");
   next();
@@ -47,6 +47,15 @@ routeradmin.post('/stock/:username', ensureAuthenticated, function(req, res, nex
     req.flash("error", "Please all the fields are very important");
     return res.redirect("/admin/stock/" + req.params.username);
   }else{
+    Pandingpay.findOne({name : req.body.name}, function(err, stock){
+      if(err){
+        console.log('err err');
+        return next(err);
+      }
+      if(stock){
+        req.flash("error", "Stock already created");
+        return res.redirect("/admin/stock/" + req.params.username);
+      }
      var pandingpay = new Pandingpay();
         pandingpay.name = req.body.name;
         pandingpay.value = req.body.value;
@@ -69,6 +78,7 @@ routeradmin.post('/stock/:username', ensureAuthenticated, function(req, res, nex
                });
           }
         });
+        });
   }
 });
 
@@ -79,7 +89,7 @@ routeradmin.get('/remove/:stockid/:stockuserid', ensureAuthenticated, function(r
     if (err) { 
         return next(err); 
       }else{
-        return res.redirect("/admin/stockpending/" + req.params.stockid);
+        return res.redirect("/admin/stockpending/" + req.params.name);
       }
   });
 });
@@ -152,12 +162,40 @@ routeradmin.get("/allusers/:username", ensureAuthenticated, function(req, res, n
   });
 });
 
-routeradmin.get("/userdetails/:username", ensureAuthenticated, function(req, res, next) {
-  User.findOne({ username: req.params.username }, function(err, user) {
+routeradmin.get("/userdetails/:userid", ensureAuthenticated, function(req, res, next) {
+  User.findOne({_id : req.params.userid }, function(err, user) {
   if (err) { return next(err); }
   if (!user) { return next(404); }
-  res.render("adminuserdetails", { user: user });
+  Pandingpay.find({ users: { $elemMatch: { user: req.params.userid } } }, function(err, pendingstock){
+      if (err) { return next(err); }
+      if (pendingstock.length > 0) { 
+        console.log(pendingstock);
+        return  res.render('adminuserdetails', { 
+          user: user, 
+          stock: pendingstock[0].value, 
+          status: 'pending...'
+        });
+       }else{
+          Confirmpay.find({ users: { $elemMatch: { user: req.params.userid} } }, function(err, confirmstock){
+              if (err) { return next(err); }
+              if (confirmstock.length > 0) { 
+                    return  res.render('adminuserdetails', { 
+                      user: user, 
+                      stock: confirmstock[0].value,
+                      status: 'Confirm'
+                    });
+               }else{
+                console.log(user);
+                 return  res.render('adminuserdetails', { 
+                    user: user, 
+                    stock: 'Emty', 
+                    status: 'you do not have any stock'
+                  });
+               }
+         });
+       }
   });
+});
 });
 
 

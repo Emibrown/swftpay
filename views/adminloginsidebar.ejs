@@ -4,13 +4,19 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">                
                    <li>
-                   <a href="/admin/allusers/<%= currentUser.username %>">
+                   <a href="/admin/allusers/<%= currentAdmin.username %>">
                    <i class="glyphicon glyphicon-home"></i>All users</a>
               </li>
                <li>
-                <a href="/admin/stock/<%= currentUser.username %>">
+                <a href="/admin/stock/<%= currentAdmin.username %>">
                   <i class="glyphicon glyphicon-list"></i>Stock</a>
               </li>
+               <li class="">
+                    <a class=""  href="/admin/logout">
+                        <i class="icon_key_alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>  
           </div>
       </aside>
       <!--sidebar end-->

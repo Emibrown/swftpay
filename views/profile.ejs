@@ -19,6 +19,11 @@
     <% } else { %>
    		<div role="alert" class="alert alert-success"><%= infos %></div>
      <% } %>
+      <% if (errors == ""){ %>
+  	<div></div>
+    <% } else { %>
+   		<div role="alert" class="alert alert-warning"><%= errors %></div>
+     <% } %>
 				<div class="row">
                   <div class="col-lg-8">
                       <section class="panel">
@@ -26,7 +31,7 @@
                               User Details
                           </header>
                           <div class="panel-body">
-                          			<form action="/edit/profile/detials" method="POST">
+                          			<form action="/user/edit/profile/detials" method="POST">
 									<fieldset>
 										<div class="form-group">
 											<label>Username</label>
@@ -75,13 +80,13 @@
                </div><!--/.row-->
 
                <div class="row">
-                  <div class="col-lg-8">
+                  <div class="col-lg-6">
                       <section class="panel">
                           <header  style="font-size: 20px" class="panel-heading">
                               Bank Details
                           </header>
                           <div class="panel-body">
-                          		<form action="/edit/profile/bank" method="POST">
+                          		<form action="/user/edit/profile/bank" method="POST">
 									<fieldset>
 										<div class="form-group">
 											<label>Bank Name</label>
@@ -103,6 +108,35 @@
                           </div>
                       </section>
                   </div>
+
+                   <div class="col-lg-6">
+                      <section class="panel">
+                          <header style="font-size: 20px" class="panel-heading">
+                              Change password
+                          </header>
+                          <div class="panel-body">
+                          			<form action="/user/Changepassword" method="POST">
+									<fieldset>
+										<div class="form-group">
+											<label>Current password</label>
+											<input class="form-control" placeholder="Enter your current password" name="cpassword" type="password">
+										</div>
+										<div class="form-group">
+											<label>New password</label>
+											<input class="form-control" placeholder="Enter your new password" name="password1" type="password">
+										</div>
+										<div class="form-group">
+											<label>Re-enter password</label>
+											<input class="form-control" placeholder="Re-enter your new password" name="password2" type="password">
+										</div>
+										 <div class="form-group">
+		                                    <button type="submit" class="btn btn-primary form-control">Change</button>
+		                                </div>
+									</fieldset>
+								</form>
+                          </div>
+                      </section>
+                  </div>      
                </div><!--/.row-->
 
                

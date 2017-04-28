@@ -15,6 +15,12 @@ var userSchema = mongoose.Schema(
         accountnum:{type: String},
         accountname:{type: String},
         bank:{type: String},
+        messages: [{
+                    title:{type: String, required: true},
+                    sendAt:{type: Date, default: Date.now},
+                    message:{type: String},
+                    read:{type: Boolean, default: false},
+                 }],
         stockAt: { type: Date},
         createdAt: {type: Date, default: Date.now}
     }

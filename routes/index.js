@@ -15,13 +15,13 @@ function ensureAuthenticated(req, res, next) {
    next();
   } else {
     req.flash("info", "You must be logged in to see this page.");
-    res.redirect("/login");
+    res.redirect("/user/login");
   }
 };
 
 function Authenticated(req, res, next) {
   if (req.isAuthenticated()) {
-       res.redirect('/dashboard/' + req.user.username);
+       res.redirect('/user/dashboard/');
   }else {
      next();
   }
@@ -35,14 +35,14 @@ router.use(function(req, res, next){
 });
 
 /* GET home page. */
-router.get('/', Authenticated, function(req, res) {
+router.get('/', function(req, res) {
   res.render('index',{
         title: 'Home'
     });
 });
 
 /* GET home page. */
-router.get('/register', function(req, res) {
+router.get('/register',  Authenticated, function(req, res) {
   res.render('register',{
         title: 'register'
     });
@@ -56,26 +56,23 @@ router.get('/refferals/:refferAt', function(req, res) {
 })
 });
 
-router.get('/login', function(req, res) {
+router.get('/login',  Authenticated, function(req, res) {
   res.render('login', {
         title: 'Login'
     });
 });
 
-router.get('/recovery', function(req, res) {
+router.get('/recovery',  Authenticated, function(req, res) {
   res.render('recovery');
 });
 
-router.get('/about', function(req, res) {
+router.get('/about',  Authenticated, function(req, res) {
   res.render('about',{
         title: 'About'
     });
 });
-router.get('/contact', function(req, res) {
+router.get('/contact',  Authenticated, function(req, res) {
   res.render('contact');
-});
-router.get('/admin/login', function(req, res) {
-  res.render('adminlogin');
 });
 
 router.get("/paytrack", ensureAuthenticated, function(req, res, next) {
@@ -137,8 +134,8 @@ router.get('/dashboard', ensureAuthenticated, function(req, res, next) {
   });
 });
 
-router.get('/changepassword', ensureAuthenticated,  function(req, res) {
-  res.render('changepassword');
+router.get('/messages', ensureAuthenticated,  function(req, res) {
+  res.render('messages');
 });
 
 router.get("/profile", ensureAuthenticated, function(req, res, next) {
@@ -160,23 +157,23 @@ router.get("/payout", ensureAuthenticated, function(req, res, next) {
 router.post('/changepassword', ensureAuthenticated,  function(req, res, next) {
    if(!req.body.cpassword || !req.body.password1 || !req.body.password2){
           req.flash("error", "All the fields are required");
-          return res.redirect("/changepassword");
+          return res.redirect("/user/profile");
         }
      User.findOne({ username: req.user.username }, function(err, user) {
         if (err) { return next(err); }
         if (!user) { return next(404); }
         if(user.password != req.body.cpassword){
           req.flash("error", "Invalied current password");
-          return res.redirect("/changepassword");
+          return res.redirect("/user/profile");
         }
         if(req.body.password1 != req.body.password2){
           req.flash("error", "Your password and confirmation password do not match.");
-          return res.redirect("/changepassword");
+          return res.redirect("/user/profile");
         }else{
            User.update({username: req.user.username}, { password: req.body.password1 }, function(err) {
               if (err) {   return next(err); }
                req.flash("info", "password changed successfully.");
-                return res.redirect("/changepassword");
+                return res.redirect("/user/profile");
             });
         }
       });
@@ -193,7 +190,7 @@ router.post("/edit/profile/detials", ensureAuthenticated, function(req, res, nex
     return;
   }
   req.flash("info", "User detials updated!");
-  res.redirect('/profile');
+  res.redirect('/user/profile');
   });
 });
 
@@ -207,21 +204,21 @@ router.post("/edit/profile/bank", ensureAuthenticated, function(req, res, next) 
     return;
   }
   req.flash("info", "Bank detials updated!");
-  res.redirect('/profile');
+  res.redirect('/user/profile');
   });
 });
 
 router.post('/updatestock/:stockid', ensureAuthenticated,  function(req, res, next) {
     if(!req.body.depositor || !req.body.amount ){
       req.flash("error", "Please all the fields are very important");
-      return res.redirect("/paytrack");
+      return res.redirect("/user/paytrack");
     }
     Pandingpay.update( {_id: req.params.stockid, "users.user": req.user._id },{ $set: { "users.$.payAt" : Date.now(), "users.$.depositorname" :req.body.depositor, "users.$.amount" :req.body.amount}},function(err){
       if (err) { return next(err); }
       User.update({_id: req.user._id}, { $unset: { stockAt: 1 }}, function(err) {
         if (err) { return next(err); }
         req.flash("error", "successfull");
-        return res.redirect("/paytrack");
+        return res.redirect("/user/paytrack");
       });
     })
   });
@@ -234,13 +231,13 @@ router.get("/payout/:userid/:stockname", ensureAuthenticated, function(req, res,
       if (err) { return next(err); }
       if (pendingstock.length > 0) { 
          req.flash("info", "You already have a pending  stock");
-        return res.redirect('/payout');
+        return res.redirect('/user/payout');
        }
        Confirmpay.find({ users: { $elemMatch: { user: req.params.userid } } }, function(err, confirmstock){
           if (err) { return next(err); }
           if (confirmstock.length > 0) { 
              req.flash("info", "You stock payment has been confirm you have to wait to be paid before geting another stock");
-            return res.redirect('/payout');
+            return res.redirect('/user/payout');
            }
        Pandingpay.findOne({ name: req.params.stockname }, function(err, stock) {
         if (err) {   return next(err); }
@@ -251,7 +248,7 @@ router.get("/payout/:userid/:stockname", ensureAuthenticated, function(req, res,
               if (err) {   return next(err); }
             });
             req.flash("info", "You have successfull signup on the "+ stock.value + " stock, click on payout to see your payout details. You have 24hours to payout else your account will be blocked");
-            res.redirect('/payout');
+            res.redirect('/user/payout');
        });
      });
      });
@@ -265,25 +262,25 @@ router.get('/confirm/:stockname/:stockuserid', ensureAuthenticated, function(req
     if (err) { 
         return next(err); 
       }else{
-        return res.redirect("/paytrack");
+        return res.redirect("/user/paytrack");
       }
   });
 });
 
 router.get('/logout', function(req, res) {
  req.logout();
- res.redirect('/login');
+ res.redirect('/user/login');
 });
 
 
 router.post('/register', function(req, res, next) {
   if(!req.body.fullname || !req.body.country || !req.body.email || !req.body.gender || !req.body.contact || !req.body.username || !req.body.password1 || !req.body.password2 ){
     req.flash("error", "Please all the fields are very important");
-    return res.redirect("/register");
+    return res.redirect("/user/register");
   }
   if(req.body.password1 != req.body.password2){
      req.flash("error", "Your password dnt match please try again");
-    return res.redirect("/register");
+    return res.redirect("/user/register");
   }
 
   var fullname = req.body.fullname;
@@ -301,7 +298,7 @@ User.findOne({username : username}, function(err, user){
   }
   if(user){
     req.flash("error", "Sorry the username you pick has aready been taken by another siftpayer");
-    return res.redirect("/register");
+    return res.redirect("/user/register");
   }
   else{
     User.findOne({email : email}, function(err, user){
@@ -311,7 +308,7 @@ User.findOne({username : username}, function(err, user){
       }
       if(user){
         req.flash("error", "Sorry the email you pick has aready been taken by another siftpayer");
-        return res.redirect("/register");
+        return res.redirect("/user/register");
       }else{
           var newUser = new User({
             fullname : fullname,
@@ -326,7 +323,7 @@ User.findOne({username : username}, function(err, user){
           console.log('saved saved');
           console.log(newUser);
           req.flash("info", "Congratulations " + newUser.username + " you have successfully registered on swift-pay");
-          return res.redirect('/register');
+          return res.redirect('/user/register');
       }
     });
   }
@@ -336,11 +333,11 @@ User.findOne({username : username}, function(err, user){
 router.post('/register/refferals/:username', function(req, res, next) {
   if(!req.body.fullname || !req.body.country || !req.body.email || !req.body.gender || !req.body.contact || !req.body.username || !req.body.password1 || !req.body.password2 ){
     req.flash("error", "Please all the fields are very important");
-     return res.redirect('/refferals/'+req.params.username);
+     return res.redirect('/user/refferals/'+req.params.username);
   }
   if(req.body.password1 != req.body.password2){
      req.flash("error", "Your password dnt match please try again");
-     return res.redirect('/refferals/'+req.params.username);
+     return res.redirect('/user/refferals/'+req.params.username);
   }
 
   var fullname = req.body.fullname;
@@ -358,7 +355,7 @@ User.findOne({username : username}, function(err, user){
   }
   if(user){
     req.flash("error", "Sorry the username you pick has aready been taken by another siftpayer");
-     return res.redirect('/refferals/'+req.params.username);
+     return res.redirect('/user/refferals/'+req.params.username);
   }
   else{
     User.findOne({email : email}, function(err, user){
@@ -368,7 +365,7 @@ User.findOne({username : username}, function(err, user){
       }
       if(user){
         req.flash("error", "Sorry the email you pick has aready been taken by another siftpayer");
-         return res.redirect('/refferals/'+req.params.username);
+         return res.redirect('/user/refferals/'+req.params.username);
       }else{
         User.findOne({username : req.params.username}, function(err, userref){
         if(err){
@@ -391,7 +388,7 @@ User.findOne({username : username}, function(err, user){
                console.log('saved saved');
                 console.log(newUser);
                 req.flash("info", "Congratulations " + newUser.username + " you have successfully registered on swift-pay");
-                return res.redirect('/refferals/'+req.params.username);
+                return res.redirect('/user/refferals/'+req.params.username);
           });
         });
       }
@@ -405,16 +402,16 @@ router.post('/login', function(req, res, next) {
       passport.authenticate('user-local', {failureFlash:true}, function(err, user, info) {
        if(!req.body.password || !req.body.username){
           req.flash("error", "Please enter your username and password");
-          return res.redirect("/login");
+          return res.redirect("/user/login");
         }
        if (err) { return next(err); }
        if (!user) { 
           req.flash("error", "Sorry  username or password is invalied!");
-          return res.redirect('/login'); 
+          return res.redirect('/user/login'); 
         }
       req.logIn(user, function(err) {
         if (err) { return next(err); }
-       return res.redirect('/dashboard');
+       return res.redirect('/user/dashboard');
      });
     })(req, res, next);
     });

@@ -3,11 +3,6 @@
     <h1><%= error.status %> </h1>
     <h1><%= message %> </h1>
     <p>Sorry this page is under constuction will be up soon</p>
-    <% if (!currentUser){ %>
-		<a class="eb" href="/">Back to home</a>
-		<% } else { %>
-        <a class="eb" href="/dashboard/<%= currentUser.username %>">Back to dashboard</a>
-		<% } %>
 </div>
 
 
