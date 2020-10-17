@@ -94,6 +94,7 @@ routeradmin.get('/remove/:stockid/:stockuserid', ensureAuthenticated, function(r
   });
 });
 
+//dysfunctional route 1
 routeradmin.get('/removeall/:stockid/:stockuserid', ensureAuthenticated, function(req, res, next) {
   Pandingpay.update({ _id: req.params.stockid },{ $pull: { 'users': { _id: req.params.stockuserid } } }, function(err){
     if (err) { 
@@ -102,6 +103,10 @@ routeradmin.get('/removeall/:stockid/:stockuserid', ensureAuthenticated, functio
         return res.redirect("/admin/stockpending/" + req.params.name);
       }
   });
+});
+// dysfunctional route 2
+routeradmin.delete('/removeall/:stockuserid', ensureAuthenticated, function(req, res, next) {
+  Pandingpay.delete({ _id: req.params.stockuserid })
 });
 
 routeradmin.get('/confirm/:userid/:stockname', ensureAuthenticated, function(req, res, next) {
