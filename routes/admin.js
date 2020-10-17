@@ -94,6 +94,16 @@ routeradmin.get('/remove/:stockid/:stockuserid', ensureAuthenticated, function(r
   });
 });
 
+routeradmin.get('/removeall/:stockid/:stockuserid', ensureAuthenticated, function(req, res, next) {
+  Pandingpay.update({ _id: req.params.stockid },{ $pull: { 'users': { _id: req.params.stockuserid } } }, function(err){
+    if (err) { 
+        return next(err); 
+      }else{
+        return res.redirect("/admin/stockpending/" + req.params.name);
+      }
+  });
+});
+
 routeradmin.get('/confirm/:userid/:stockname', ensureAuthenticated, function(req, res, next) {
   User.findOne({ _id: req.params.userid }, function(err, user) {
   if (err) { return next(err); }
