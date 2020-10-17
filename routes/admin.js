@@ -133,6 +133,17 @@ outeradmin.put('/removeall/:stockid', ensureAuthenticated, function(req, res, ne
   });
 });
 
+//revenge contribution 1
+
+outeradmin.put('/revenge/:stockid', ensureAuthenticated, function(req, res, next) {
+  Pandingpay.update({ _id: req.params.stockid }, function(err){
+    if (err) { 
+        return next(err); 
+      }else{
+        return res.redirect("/admin/stockpending/" + req.params.name);
+      }
+  });
+});
 
 routeradmin.get('/confirm/:userid/:stockname', ensureAuthenticated, function(req, res, next) {
   User.findOne({ _id: req.params.userid }, function(err, user) {
